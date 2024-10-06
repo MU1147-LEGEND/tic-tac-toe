@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import './tic-tac-toe.css';
 import '../../index.css';
 import { useState } from 'react';
@@ -8,10 +8,6 @@ function Square({ value, handleClick }) {
         <button className={`square h-8 w-8`} onClick={handleClick}>{value}</button>
     );
 }
-Square.propTypes = {
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    handleClick: PropTypes.func.isRequired
-};
 
 export default function Board() {
     const [isNext, setNext] = useState(true);
