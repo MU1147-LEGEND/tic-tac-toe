@@ -16,6 +16,7 @@ export default function Board() {
     const [secPlayer, setSecPlayer] = useState("Second Player");
     const [firstValue, setFirstValue] = useState("");
     const [secondValue, setSecondValue] = useState("");
+    const [isOpenModal, setIsOpenModal] = useState(true);
 
     const winner = calculateWinner(squares);
     let status;
@@ -26,8 +27,7 @@ export default function Board() {
     }
 
     const playerNames = () => {
-        setFirstPlayer(prompt("first player name:"));
-        setSecPlayer(prompt("second player name: "));
+        setIsOpenModal(true);
     }
     const getFirstPlayer = (e) => {
         setFirstPlayer(e.target.value);
@@ -60,9 +60,29 @@ export default function Board() {
         setSquares([]);
         setNext(true);
     }
+    const closeModal = (e)=>{
+        e.stopPropagation();
+        setIsOpenModal(!isOpenModal);
+    }
 
     return (
-        <>
+
+
+        <>{isOpenModal?
+            (<div onClick={(e) => { closeModal(e) }} className="modal absolute h-screen flex items-center justify-center bg-gray-600/70 w-full">
+                <div onClick={(e)=>{e.stopPropagation()}} className="playerName relative flex flex-col items-center gap-4 bg-slate-400 h-2/3 w-4/5 md:h-1/2 md:w-3/4 lg:w-1/3 px-8 md:px-20 rounded-xl pt-16">
+                    <input onChange={(e) => { getFirstPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={firstValue} placeholder="First Player" />
+                    <input onChange={(e) => { getSecondPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={secondValue} placeholder="Second Player" />
+
+                    <div className="closeButton absolute bottom-8">
+                        <button onClick={(e) => { closeModal(e) }} className="button-86" role="button">Close</button>
+                    </div>
+
+                </div>
+            </div>)
+            :(
+
+            //{/* gameboard */}
             <div className="container flex flex-col m-auto items-center justify-center h-screen">
                 <p className='text-3xl mb-6 font-bold bg-gradient-to-l to-[#09ffea] from-[#fff700] bg-clip-text text-transparent capitalize'>{status}</p>
                 <p className='animate-pulse bg-slate-300 mb-2 text-xl font-normal px-3 py-1 rounded-md capitalize'>{firstPlayer}: X, {secPlayer}: O</p>
@@ -83,15 +103,11 @@ export default function Board() {
                 </div>
                 <button onClick={resetPlay} className='group mt-6 bg-pink-500 py-2.5 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-500'>Restart <i className="fa-solid fa-arrow-rotate-left rotate-0 group-hover:-rotate-180 transition-transform duration-500"></i></button>
                 <button onClick={playerNames} className='group mt-6 bg-pink-500 py-2.5 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-500'>Set Players Name </button>
-
-                <div className="playerName flex flex-col gap-2">
-
-                    <input onChange={(e) => { getFirstPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={firstValue} placeholder="First Player" />
-                    <input onChange={(e) => { getSecondPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={secondValue} placeholder="Second Player" />
- 
-                </div>
             </div>
+            )
+        }
         </>
+
     )
 }
 
