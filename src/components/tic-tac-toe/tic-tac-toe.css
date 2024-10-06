@@ -1,0 +1,23 @@
+body{
+    @apply bg-gray-600/85
+}
+
+.square {
+    @apply px-6 py-4 border border-black/50;
+    
+}
+.square {
+    background: #333;
+    border: 1px solid #ddd;
+    float: left;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 34px;
+    height: 100px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+    @apply bg-gradient-to-l to-[#09ffea] from-[#fff700] bg-clip-text text-transparent;
+  }
