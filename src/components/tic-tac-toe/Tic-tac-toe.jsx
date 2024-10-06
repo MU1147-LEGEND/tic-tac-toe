@@ -18,6 +18,7 @@ export default function Board() {
     const [secondValue, setSecondValue] = useState("");
     const [isOpenModal, setIsOpenModal] = useState(true);
 
+    history.scrollRestoration = "manual";
     const winner = calculateWinner(squares);
     let status;
     if (winner) {
