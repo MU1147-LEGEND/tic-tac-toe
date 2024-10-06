@@ -16,7 +16,7 @@ export default function Board() {
     const [secPlayer, setSecPlayer] = useState("Second Player");
     const [firstValue, setFirstValue] = useState("");
     const [secondValue, setSecondValue] = useState("");
-    const [isOpenModal, setIsOpenModal] = useState(true);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const winner = calculateWinner(squares);
     let status;
@@ -70,13 +70,15 @@ export default function Board() {
 
         <>{isOpenModal?
             (<div onClick={(e) => { closeModal(e) }} className="modal absolute h-screen flex items-center justify-center bg-gray-600/70 w-full">
-                <div onClick={(e)=>{e.stopPropagation()}} className="playerName relative flex flex-col items-center gap-4 bg-slate-400 h-2/3 w-4/5 md:h-1/2 md:w-3/4 lg:w-1/3 px-8 md:px-20 rounded-xl pt-16">
+                <div onClick={(e)=>{e.stopPropagation()}} className="playerName relative flex flex-col items-center gap-4 bg-slate-400 h-1/2 w-4/5 md:h-1/2 md:w-3/4 lg:w-1/3 px-8 md:px-20 rounded-xl pt-16">
+                    <form className='flex flex-col justify-center items-center gap-4'>
                     <input onChange={(e) => { getFirstPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={firstValue} placeholder="First Player" />
                     <input onChange={(e) => { getSecondPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={secondValue} placeholder="Second Player" />
 
                     <div className="closeButton absolute bottom-8">
-                        <button onClick={(e) => { closeModal(e) }} className="button-86" role="button">Close</button>
+                        <button  onClick={(e) => { closeModal(e) }} className="button-86" role="button">Close</button>
                     </div>
+                    </form>
 
                 </div>
             </div>)
