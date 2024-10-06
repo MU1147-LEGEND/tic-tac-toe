@@ -70,6 +70,22 @@ export default function Board() {
 
         <>{isOpenModal?
             (<div onClick={(e) => { closeModal(e) }} className="modal absolute h-screen flex items-center justify-center bg-gray-600/70 w-full">
+                {/* animation design outsite modal */}
+                <div className="area" >
+            <ul className="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
+                {/* animation design outsite modal */}
                 <div onClick={(e)=>{e.stopPropagation()}} className="playerName relative flex flex-col items-center gap-4 bg-slate-400 h-1/2 w-4/5 md:h-1/2 md:w-3/4 lg:w-1/3 px-8 md:px-20 rounded-xl pt-16">
                     <form className='flex flex-col justify-center items-center gap-4'>
                     <input onChange={(e) => { getFirstPlayer(e) }} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={firstValue} placeholder="First Player" />
